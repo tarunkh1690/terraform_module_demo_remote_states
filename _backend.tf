@@ -5,7 +5,7 @@ terraform {
     organization = "tarun_org"
 
     workspaces {
-      name = "terraform_module_demo"
+      name = "terraform_module_demo_remote_states"
     }
   }
 }
