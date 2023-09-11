@@ -23,7 +23,7 @@ resource "aws_lb" "multi_az_wepapp_lb" {
   name                             = "${var.client.name}-webapp-lb"
   internal                         = true
   load_balancer_type               = "application"
-  subnets                          = ["${local.aza_subnet_id}", "${local.azb_subnet_id}"]
+  subnets                          = ["${local.aza_private_subnet_id}", "${local.azb_private_subnet_id}"]
   security_groups                  = ["${aws_security_group.SG_wepapp_alb.id}"]
   enable_deletion_protection       = false
   enable_cross_zone_load_balancing = true
@@ -81,7 +81,7 @@ resource "aws_lb" "multi_az_public_wepapp_lb" {
   name                             = "${var.client.name}-public-webapp-lb"
   internal                         = false
   load_balancer_type               = "application"
-  subnets                          = ["${local.aza_subnet_id}", "${local.azb_subnet_id}"]
+  subnets                          = ["${local.aza_public_subnet_id}", "${local.azb_public_subnet_id}"]
   security_groups                  = ["${aws_security_group.SG_wepapp_alb.id}"]
   enable_deletion_protection       = false
   enable_cross_zone_load_balancing = true
@@ -129,5 +129,11 @@ resource "aws_lb_target_group_attachment" "aza_public_webapp_http" {
 resource "aws_lb_target_group_attachment" "azb_public_webapp_http" {
   target_group_arn = aws_lb_target_group.public-webapp-target.arn
   target_id        = module.web_application2.instances.Web02.id
+  port             = 8080
+}
+
+resource "aws_lb_target_group_attachment" "azb_public_webapp_http" {
+  target_group_arn = aws_lb_target_group.public-webapp-target.arn
+  target_id        = module.web_application3.instances.Web03.id
   port             = 8080
 }

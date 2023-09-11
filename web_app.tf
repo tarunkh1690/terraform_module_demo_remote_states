@@ -10,7 +10,7 @@ module "web_application" {
   instance_type          = "t2.micro"
   key_name               = "keypair_${var.client.name}"
   vpc_security_group_ids = ["${aws_security_group.webapp.id}"]
-  subnet_id              = "${local.aza_subnet_id}"
+  subnet_id              = "${local.aza_private_subnet_id}"
   userDataScript         = base64encode(file(var.userDataScript))
   #userDataScript         = base64encode(templatefile(var.userDataScript.app))
 
@@ -38,7 +38,7 @@ module "web_application2" {
   instance_type          = "t2.micro"
   key_name               = "keypair_${var.client.name}"
   vpc_security_group_ids = ["${aws_security_group.webapp.id}"]
-  subnet_id              = "${local.azb_subnet_id}"
+  subnet_id              = "${local.azb_private_subnet_id}"
   userDataScript         = base64encode(file(var.userDataScript))
  
 
@@ -66,7 +66,7 @@ module "web_application3" {
   instance_type          = "t2.micro"
   key_name               = "keypair_${var.client.name}"
   vpc_security_group_ids = ["${aws_security_group.webapp.id}"]
-  subnet_id              = "${local.azb_subnet_id}"
+  subnet_id              = "${local.azc_private_subnet_id}"
   userDataScript         = base64encode(file(var.userDataScript))
  
 
@@ -81,7 +81,7 @@ module "web_application3" {
 
   host_prefix = "${var.client.prod_host_prefix}"
 
-  hosts = ["Web03","Web04"]
+  hosts = ["Web03"]
 
 
 }
