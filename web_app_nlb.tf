@@ -132,7 +132,7 @@ resource "aws_lb_target_group_attachment" "azb_public_webapp_http" {
   port             = 8080
 }
 
-resource "aws_lb_target_group_attachment" "azb_public_webapp_http" {
+resource "aws_lb_target_group_attachment" "azc_public_webapp_http" {
   target_group_arn = aws_lb_target_group.public-webapp-target.arn
   target_id        = module.web_application3.instances.Web03.id
   port             = 8080
