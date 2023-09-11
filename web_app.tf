@@ -66,7 +66,7 @@ module "web_application3" {
   instance_type          = "t2.micro"
   key_name               = "keypair_${var.client.name}"
   vpc_security_group_ids = ["${aws_security_group.webapp.id}"]
-  subnet_id              = "${local.aza_private_subnet_id}"
+  subnet_id              = "${local.aza_public_subnet_id}"
   userDataScript         = base64encode(file(var.userDataScript))
  
 
