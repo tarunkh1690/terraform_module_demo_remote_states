@@ -43,5 +43,5 @@ variable "testClient_nlp_ips" {
 }
 
 variable "public_lb_ips" {
-    default = ["3.111.153.83/32","13.126.184.144/32"]
+    default = ["3.7.40.58/32","43.204.78.5/32"]
 }
